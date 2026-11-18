@@ -4,9 +4,12 @@ import Prevision from './screens/Prevision'
 import Playas from './screens/Playas'
 
 const FOTOS = [
-  "https://upload.wikimedia.org/wikipedia/commons/4/43/Vinar%C3%B2s_-_Passeig_Mar%C3%ADtim.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/e/ec/Esgl%C3%A9sia_Arxiprestal_de_Sant_Sebasti%C3%A0_%28Vinar%C3%B2s%29.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/8/85/Ajuntament_de_Vinar%C3%B2s.jpg"
+  '/assets/vinaros/1.jpg',
+  '/assets/vinaros/2.jpg',
+  '/assets/vinaros/3.jpg',
+  '/assets/vinaros/4.jpg',
+  '/assets/vinaros/Passeig_B4A7244.jpg',
+  '/assets/vinaros/Esglesia_Arxiprestal_de_lAssumpcio_B4A7166.jpg'
 ]
 
 export default function App() {
@@ -194,3 +197,4 @@ export default function App() {
     </div>
   )
 }
+
