@@ -4,11 +4,9 @@ import Prevision from './screens/Prevision'
 import Playas from './screens/Playas'
 
 const FOTOS = [
-  "https://upload.wikimedia.org/wikipedia/commons/6/67/Antiga_pres%C3%B3_de_Benicarl%C3%B3.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/e/ec/Esgl%C3%A9sia_Arxiprestal_de_Sant_Sebasti%C3%A0_%28Vinar%C3%B2s%29.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/8/85/Ajuntament_de_Vinar%C3%B2s.jpg",
   "https://upload.wikimedia.org/wikipedia/commons/4/43/Vinar%C3%B2s_-_Passeig_Mar%C3%ADtim.jpg",
-  "https://upload.wikimedia.org/wikipedia/commons/e/ec/Esgl%C3%A9sia_Arxiprestal_de_Sant_Sebasti%C3%A0_%28Vinar%C3%B2s%29.jpg"
+  "https://upload.wikimedia.org/wikipedia/commons/e/ec/Esgl%C3%A9sia_Arxiprestal_de_Sant_Sebasti%C3%A0_%28Vinar%C3%B2s%29.jpg",
+  "https://upload.wikimedia.org/wikipedia/commons/8/85/Ajuntament_de_Vinar%C3%B2s.jpg"
 ]
 
 export default function App() {
@@ -61,7 +59,7 @@ export default function App() {
         url: window.location.origin,
       }).catch((error) => console.log('Error al compartir', error));
     } else {
-      alert('Tu navegador no soporta la funciÃ³n de compartir. Puedes copiar la URL: ' + window.location.origin);
+      alert('Tu navegador no soporta la función de compartir. Puedes copiar la URL: ' + window.location.origin);
     }
   };
 
@@ -97,7 +95,7 @@ export default function App() {
                 cursor: 'pointer'
               }}
             >
-              â˜• Apoya a XocoMet
+              ☕ Apoya a XocoMet
             </a>
           </div>
           
@@ -136,7 +134,7 @@ export default function App() {
             }}
           >
             <p style={{ fontSize: '0.9rem', marginBottom: '10px' }}>
-              Instala XocoMet en tu mÃ³vil para acceder mÃ¡s rÃ¡pido
+              Instala XocoMet en tu móvil para acceder más rápido
             </p>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
               <button
@@ -187,7 +185,7 @@ export default function App() {
           Ahora
         </button>
         <button className={tab === 'prevision' ? 'active' : ''} onClick={() => setTab('prevision')}>
-          PrevisiÃ³n
+          Previsión
         </button>
         <button className={tab === 'playas' ? 'active' : ''} onClick={() => setTab('playas')}>
           Playas
@@ -196,4 +194,3 @@ export default function App() {
     </div>
   )
 }
-

@@ -133,7 +133,7 @@ export default function Inicio() {
       const horaInicio = fechaInicio.getHours()
       
       let nombreFranja = ''
-      if (horaInicio >= 6 && horaInicio < 14) nombreFranja = 'MaÃ±ana'
+      if (horaInicio >= 6 && horaInicio < 14) nombreFranja = 'Mañana'
       else if (horaInicio >= 14 && horaInicio < 22) nombreFranja = 'Tarde'
       else nombreFranja = 'Noche'
 
@@ -166,12 +166,12 @@ export default function Inicio() {
   const franjasMostrar = getFranjas()
 
   const getIcono = (code: number) => {
-    if (code === 0) return 'â˜€ï¸';
-    if (code <= 2) return 'ðŸŒ¤ï¸';
-    if (code <= 48) return 'â˜ï¸';
-    if (code <= 67) return 'ðŸŒ§ï¸';
-    if (code <= 77) return 'â„ï¸';
-    return 'â›ˆï¸';
+    if (code === 0) return '☀️';
+    if (code <= 2) return '🌤️';
+    if (code <= 48) return '☁️';
+    if (code <= 67) return '🌧️';
+    if (code <= 77) return '❄️';
+    return '⛈️';
   }
 
   const renderAvisos = () => {
@@ -182,7 +182,7 @@ export default function Inicio() {
       return (
         <div style={{ textAlign: 'center' }}>
           <p style={{ fontSize: '1rem', fontWeight: 'bold', color: '#f39c12', marginBottom: '10px' }}>
-            âš ï¸ Hay avisos meteorolÃ³gicos activos en la Comunitat Valenciana
+            ⚠️ Hay avisos meteorológicos activos en la Comunitat Valenciana
           </p>
           <a href={avisos.enlace} target="_blank" rel="noopener noreferrer"
              style={{ color: 'var(--accent-color)', textDecoration: 'underline', fontSize: '0.9rem' }}>
@@ -230,15 +230,15 @@ export default function Inicio() {
             <p style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>{datos.lluvia}</p>
           </div>
           <div>
-            <p style={{ fontSize: '0.8rem', opacity: 0.7, marginBottom: '5px' }}>PresiÃ³n (hPa)</p>
+            <p style={{ fontSize: '0.8rem', opacity: 0.7, marginBottom: '5px' }}>Presión (hPa)</p>
             <p style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>{datos.presion}</p>
           </div>
           <div>
-            <p style={{ fontSize: '0.8rem', opacity: 0.7, marginBottom: '5px' }}>MÃ¡x Registrada (ÂºC)</p>
+            <p style={{ fontSize: '0.8rem', opacity: 0.7, marginBottom: '5px' }}>Máx Registrada (ºC)</p>
             <p style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>{datos.tempMax}</p>
           </div>
           <div>
-            <p style={{ fontSize: '0.8rem', opacity: 0.7, marginBottom: '5px' }}>MÃ­n Registrada (ÂºC)</p>
+            <p style={{ fontSize: '0.8rem', opacity: 0.7, marginBottom: '5px' }}>Mín Registrada (ºC)</p>
             <p style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>{datos.tempMin}</p>
           </div>
         </div>
@@ -259,9 +259,9 @@ export default function Inicio() {
                 </div>
                 <div className="card-row">
                   <span style={{ fontSize: '1.5rem' }}>{getIcono(franja.weather_code)}</span>
-                  <span><strong>{Math.round(franja.tempMedia)}Â°</strong></span>
+                  <span><strong>{Math.round(franja.tempMedia)}°</strong></span>
                   <span>{franja.precipTotal.toFixed(1)} mm</span>
-                  <span>ðŸ’¨ {Math.round(franja.vientoMedio)} km/h</span>
+                  <span>💨 {Math.round(franja.vientoMedio)} km/h</span>
                   <span>Rachas: {Math.round(franja.rachasMax)} km/h</span>
                   <span>HR: {Math.round(franja.humedadMedia)}%</span>
                   <span>UV: {franja.uvMax.toFixed(1)}</span>

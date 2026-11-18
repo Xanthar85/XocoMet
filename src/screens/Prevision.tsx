@@ -155,7 +155,7 @@ export default function Prevision() {
   }, [modelo])
 
   if (cargando) {
-    return <p style={{ textAlign: 'center' }}>Cargando previsiÃ³n...</p>
+    return <p style={{ textAlign: 'center' }}>Cargando previsión...</p>
   }
 
   if (error) {
@@ -164,19 +164,19 @@ export default function Prevision() {
 
   const getIcono = (code: number | null) => {
     if (code === null || code === undefined) return '-';
-    if (code === 0) return 'â˜€ï¸';
-    if (code <= 2) return 'ðŸŒ¤ï¸';
-    if (code <= 48) return 'â˜ï¸';
-    if (code <= 67) return 'ðŸŒ§ï¸';
-    if (code <= 77) return 'â„ï¸';
-    return 'â›ˆï¸';
+    if (code === 0) return '☀️';
+    if (code <= 2) return '🌤️';
+    if (code <= 48) return '☁️';
+    if (code <= 67) return '🌧️';
+    if (code <= 77) return '❄️';
+    return '⛈️';
   }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
       <div style={{ background: 'rgba(255,255,255,0.1)', padding: '20px', borderRadius: '12px', backdropFilter: 'blur(10px)' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
-          <h2 style={{ fontSize: '1.2rem' }}>PrevisiÃ³n 7 dÃ­as</h2>
+          <h2 style={{ fontSize: '1.2rem' }}>Previsión 7 días</h2>
           <select 
             value={modelo} 
             onChange={(e) => setModelo(e.target.value)}
@@ -218,13 +218,13 @@ export default function Prevision() {
                 >
                   <div style={{ fontWeight: 'bold', color: 'var(--accent-color)', marginBottom: '8px', display: 'flex', justifyContent: 'space-between' }}>
                     <span>{nombreDia}</span>
-                    <span>{expandido ? 'â–²' : 'â–¼'}</span>
+                    <span>{expandido ? '▲' : '▼'}</span>
                   </div>
                   <div className="card-row">
                     <span style={{ fontSize: '1.5rem' }}>{getIcono(dia.weather_code)}</span>
-                    <span><span style={{ color: '#e74c3c' }}>{tempMax}Â°</span> / <span style={{ color: '#3498db' }}>{tempMin}Â°</span></span>
+                    <span><span style={{ color: '#e74c3c' }}>{tempMax}°</span> / <span style={{ color: '#3498db' }}>{tempMin}°</span></span>
                     <span>{precip} mm</span>
-                    <span>ðŸ’¨ {viento} km/h</span>
+                    <span>💨 {viento} km/h</span>
                     <span>HR: {hr}%</span>
                     <span>UV: {uv}</span>
                   </div>
@@ -252,8 +252,8 @@ export default function Prevision() {
                             <span style={{ fontWeight: 'bold', color: 'var(--accent-color)' }}>{t.slice(11, 16)}</span>
                             <span style={{ fontSize: '1.1rem' }}>{getIcono(codeH)}</span>
                             <span>{precipH === null || precipH === undefined ? '-' : `${precipH.toFixed(1)} mm`}</span>
-                            <span>{tempH === null || tempH === undefined ? '-' : `${Math.round(tempH)}Â°C`}</span>
-                            <span>ðŸ’¨ {vientoH === null || vientoH === undefined ? '-' : `${Math.round(vientoH)} km/h`}</span>
+                            <span>{tempH === null || tempH === undefined ? '-' : `${Math.round(tempH)}°C`}</span>
+                            <span>💨 {vientoH === null || vientoH === undefined ? '-' : `${Math.round(vientoH)} km/h`}</span>
                             <span>Rachas: {rachasH === null || rachasH === undefined ? '-' : `${Math.round(rachasH)} km/h`}</span>
                             <span>HR: {hrH === null || hrH === undefined ? '-' : `${Math.round(hrH)}%`}</span>
                             <span>UV: {uvH === null || uvH === undefined ? '-' : uvH.toFixed(1)}</span>

@@ -8,7 +8,7 @@ type Franja = {
 }
 
 const FRANJAS: Franja[] = [
-  { nombre: 'MaÃ±ana', inicio: 6, fin: 14 },
+  { nombre: 'Mañana', inicio: 6, fin: 14 },
   { nombre: 'Tarde', inicio: 14, fin: 22 },
   { nombre: 'Noche', inicio: 22, fin: 6 },
 ]
@@ -48,7 +48,7 @@ type FranjaDatos = {
 }
 
 const getFranjaDeHora = (hora: number): string => {
-  if (hora >= 6 && hora < 14) return 'MaÃ±ana'
+  if (hora >= 6 && hora < 14) return 'Mañana'
   if (hora >= 14 && hora < 22) return 'Tarde'
   return 'Noche'
 }
@@ -73,7 +73,7 @@ export default function Playas() {
         return res.json()
       }),
       fetch(urlForecast).then((res) => {
-        if (!res.ok) throw new Error('Error al cargar radiaciÃ³n UV')
+        if (!res.ok) throw new Error('Error al cargar radiación UV')
         return res.json()
       }),
     ])
@@ -195,10 +195,10 @@ export default function Playas() {
                   <span style={{ fontSize: '0.8rem', opacity: 0.7 }}>{f.dia}</span>
                 </div>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px', fontSize: '0.9rem' }}>
-                  <div>ðŸŒŠ Oleaje: <strong>{f.oleaje.toFixed(1)} m</strong></div>
-                  <div>â±ï¸ Periodo: <strong>{f.periodo.toFixed(1)} s</strong></div>
-                  <div>ðŸŒ¡ï¸ Agua: <strong>{f.tempAgua.toFixed(1)} Â°C</strong></div>
-                  <div>â˜€ï¸ UV: <strong>{f.uv.toFixed(1)} ({getNivelUV(f.uv)})</strong></div>
+                  <div>🌊 Oleaje: <strong>{f.oleaje.toFixed(1)} m</strong></div>
+                  <div>⏱️ Periodo: <strong>{f.periodo.toFixed(1)} s</strong></div>
+                  <div>🌡️ Agua: <strong>{f.tempAgua.toFixed(1)} °C</strong></div>
+                  <div>☀️ UV: <strong>{f.uv.toFixed(1)} ({getNivelUV(f.uv)})</strong></div>
                 </div>
               </div>
             ))}
