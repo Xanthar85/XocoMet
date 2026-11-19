@@ -1,7 +1,7 @@
 {
-  "name": "MeteoCaduf",
-  "short_name": "MeteoCaduf",
-  "description": "App meteorológica local para Benicarló con estética retro.",
+  "name": "XocoMet",
+  "short_name": "XocoMet",
+  "description": "App meteorológica local para Vinarós.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -30,3 +30,5 @@
     }
   ]
 }
+
+
