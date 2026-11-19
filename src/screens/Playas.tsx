@@ -1,4 +1,4 @@
-﻿// src/screens/Playas.tsx
+// src/screens/Playas.tsx
 import { useState, useEffect } from 'react'
 
 type Franja = {
@@ -160,19 +160,19 @@ export default function Playas() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-      <div style={{ background: 'rgba(255,255,255,0.1)', padding: '15px', borderRadius: '12px', backdropFilter: 'blur(10px)' }}>
-        <label style={{ fontSize: '0.85rem', opacity: 0.7, display: 'block', marginBottom: '8px' }}>Elige playa</label>
+      <div style={{ background: 'rgba(255,255,255,0.1)', padding: '16px', borderRadius: '12px', backdropFilter: 'blur(10px)' }}>
+        <label style={{ fontSize: '0.95rem', opacity: 0.75, display: 'block', marginBottom: '8px' }}>Elige playa</label>
         <select
           value={playa}
           onChange={(e) => setPlaya(e.target.value)}
           style={{
             width: '100%',
-            padding: '10px',
+            padding: '12px',
             borderRadius: '8px',
             border: 'none',
             background: 'rgba(0,0,0,0.3)',
             color: 'var(--text-color)',
-            fontSize: '1rem',
+            fontSize: '1.1rem',
           }}
         >
           {PLAYAS.map((p) => (
@@ -185,27 +185,36 @@ export default function Playas() {
       {error && <p style={{ textAlign: 'center', color: '#f39c12' }}>{error}</p>}
 
       {!cargando && !error && (
-        <div style={{ background: 'rgba(255,255,255,0.1)', padding: '15px', borderRadius: '12px', backdropFilter: 'blur(10px)' }}>
-          <h2 style={{ fontSize: '1.2rem', marginBottom: '15px' }}>{playa}</h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            {franjas.map((f, i) => (
-              <div key={i} style={{ padding: '12px', background: 'rgba(0,0,0,0.2)', borderRadius: '8px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '4px' }}>
-                  <span style={{ fontWeight: 'bold', color: 'var(--accent-color)' }}>{f.nombre}</span>
-                  <span style={{ fontSize: '0.8rem', opacity: 0.7 }}>{f.dia}</span>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+          {franjas.map((f, i) => (
+            <div key={i} style={{ background: 'rgba(255,255,255,0.1)', padding: '16px', borderRadius: '12px', backdropFilter: 'blur(10px)' }}>
+              <h2 style={{ fontSize: '1.2rem', marginBottom: '14px', borderBottom: '1px solid rgba(255,255,255,0.2)', paddingBottom: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                <span>{f.nombre} · {playa}</span>
+                <span style={{ fontSize: '0.9rem', color: 'var(--accent-color)', fontWeight: 'bold' }}>{f.dia}</span>
+              </h2>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                <div style={{ background: 'rgba(0,0,0,0.25)', borderRadius: '10px', padding: '12px', textAlign: 'center' }}>
+                  <p style={{ fontSize: '0.85rem', opacity: 0.8, marginBottom: '4px' }}>🌊 Oleaje</p>
+                  <p style={{ fontSize: 'clamp(1.7rem, 7vw, 2.2rem)', fontWeight: 'bold', lineHeight: 1.1 }}>{f.oleaje.toFixed(1)} m</p>
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px', fontSize: '0.9rem' }}>
-                  <div>🌊 Oleaje: <strong>{f.oleaje.toFixed(1)} m</strong></div>
-                  <div>⏱️ Periodo: <strong>{f.periodo.toFixed(1)} s</strong></div>
-                  <div>🌡️ Agua: <strong>{f.tempAgua.toFixed(1)} °C</strong></div>
-                  <div>☀️ UV: <strong>{f.uv.toFixed(1)} ({getNivelUV(f.uv)})</strong></div>
+                <div style={{ background: 'rgba(0,0,0,0.25)', borderRadius: '10px', padding: '12px', textAlign: 'center' }}>
+                  <p style={{ fontSize: '0.85rem', opacity: 0.8, marginBottom: '4px' }}>⏱️ Periodo</p>
+                  <p style={{ fontSize: 'clamp(1.7rem, 7vw, 2.2rem)', fontWeight: 'bold', lineHeight: 1.1 }}>{f.periodo.toFixed(1)} s</p>
+                </div>
+                <div style={{ background: 'rgba(0,0,0,0.25)', borderRadius: '10px', padding: '12px', textAlign: 'center' }}>
+                  <p style={{ fontSize: '0.85rem', opacity: 0.8, marginBottom: '4px' }}>🌡️ Agua</p>
+                  <p style={{ fontSize: 'clamp(1.7rem, 7vw, 2.2rem)', fontWeight: 'bold', lineHeight: 1.1 }}>{f.tempAgua.toFixed(1)}°C</p>
+                </div>
+                <div style={{ background: 'rgba(0,0,0,0.25)', borderRadius: '10px', padding: '12px', textAlign: 'center' }}>
+                  <p style={{ fontSize: '0.85rem', opacity: 0.8, marginBottom: '4px' }}>☀️ UV</p>
+                  <p style={{ fontSize: 'clamp(1.7rem, 7vw, 2.2rem)', fontWeight: 'bold', lineHeight: 1.1 }}>{f.uv.toFixed(1)}</p>
+                  <p style={{ fontSize: '0.8rem', opacity: 0.8, marginTop: '2px' }}>{getNivelUV(f.uv)}</p>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       )}
     </div>
   )
 }
-// src/screens/Playas.tsx

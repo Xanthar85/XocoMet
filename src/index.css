@@ -2,7 +2,13 @@
   --bg-color: #1a1a1a;
   --text-color: #f4f4f4;
   --accent-color: #f39c12;
-  --nav-height: 64px;
+  --nav-height: 70px;
+}
+
+html {
+  font-size: max(clamp(20px, 5.2vw, 23px), 1rem);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 * {
@@ -19,14 +25,14 @@ body {
 }
 
 .app-container {
-  min-height: 100dvh;
+  height: 100dvh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   position: relative;
-  overflow-x: hidden;
 }
 
 .app-container::before {
@@ -41,10 +47,41 @@ body {
   position: relative;
   z-index: 1;
   flex: 1;
-  padding: 20px;
-  padding-bottom: calc(var(--nav-height) + 20px);
+  min-height: 0;
+  padding: 14px 14px 0;
+  padding-bottom: var(--nav-height);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+
+.tabs-carousel {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  margin: 0 -14px;
+  touch-action: pan-x pan-y;
+}
+
+.tabs-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  padding: 0 14px 18px;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 .bottom-nav {
@@ -62,12 +99,25 @@ body {
   align-items: center;
 }
 
+.aviso-no-oficial {
+  margin: 0 -14px;
+  padding: 6px 12px;
+  text-align: center;
+  font-size: 0.72rem;
+  line-height: 1.25;
+  color: var(--accent-color);
+  background: rgba(0, 0, 0, 0.72);
+  border-top: 1px solid rgba(243, 156, 18, 0.28);
+  flex-shrink: 0;
+}
+
 .bottom-nav button {
   background: none;
   border: none;
   color: var(--text-color);
-  font-size: 16px;
-  opacity: 0.6;
+  font-size: 1.05rem;
+  font-weight: 600;
+  opacity: 0.65;
   cursor: pointer;
 }
 
@@ -80,13 +130,13 @@ body {
 .card-container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .card-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px 14px;
   justify-content: space-between;
   align-items: center;
 }

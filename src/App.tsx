@@ -1,7 +1,10 @@
-﻿import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Inicio from './screens/Inicio'
 import Prevision from './screens/Prevision'
 import Playas from './screens/Playas'
+
+const TABS = ['inicio', 'prevision', 'playas'] as const
+type Tab = (typeof TABS)[number]
 
 const FOTOS = [
   '/assets/vinaros/1.jpg',
@@ -13,7 +16,7 @@ const FOTOS = [
 ]
 
 export default function App() {
-  const [tab, setTab] = useState<'inicio' | 'prevision' | 'playas'>(() => {
+  const [tab, setTab] = useState<Tab>(() => {
     const guardado = localStorage.getItem('XocoMet_tab')
     if (guardado === 'inicio' || guardado === 'prevision' || guardado === 'playas') {
       return guardado
@@ -23,6 +26,9 @@ export default function App() {
   const [fotoActual, setFotoActual] = useState(FOTOS[0])
   const [bannerInstalacion, setBannerInstalacion] = useState(false)
   const [eventoInstalacion, setEventoInstalacion] = useState<any>(null)
+  const carouselRef = useRef<HTMLDivElement | null>(null)
+  const bloqueandoScrollRef = useRef(false)
+  const scrollTimerRef = useRef<number | null>(null)
 
   useEffect(() => {
     localStorage.setItem('XocoMet_tab', tab)
@@ -65,6 +71,51 @@ export default function App() {
       alert('Tu navegador no soporta la función de compartir. Puedes copiar la URL: ' + window.location.origin);
     }
   };
+
+  useEffect(() => {
+    const el = carouselRef.current
+    if (!el) return
+    const idx = TABS.indexOf(tab)
+    el.scrollTo({ left: idx * el.clientWidth, behavior: 'auto' })
+  }, [])
+
+  useEffect(() => {
+    const manejarResize = () => {
+      const el = carouselRef.current
+      if (!el) return
+      const idx = TABS.indexOf(tab)
+      el.scrollTo({ left: idx * el.clientWidth, behavior: 'auto' })
+    }
+    window.addEventListener('resize', manejarResize)
+    return () => window.removeEventListener('resize', manejarResize)
+  }, [tab])
+
+  const irAPestana = (nuevaTab: Tab) => {
+    setTab(nuevaTab)
+    const el = carouselRef.current
+    if (!el) return
+    const idx = TABS.indexOf(nuevaTab)
+    bloqueandoScrollRef.current = true
+    el.scrollTo({ left: idx * el.clientWidth, behavior: 'smooth' })
+    if (scrollTimerRef.current) window.clearTimeout(scrollTimerRef.current)
+    scrollTimerRef.current = window.setTimeout(() => {
+      bloqueandoScrollRef.current = false
+    }, 450)
+  }
+
+  const manejarScrollCarrusel = () => {
+    if (bloqueandoScrollRef.current) return
+    if (scrollTimerRef.current) window.clearTimeout(scrollTimerRef.current)
+    scrollTimerRef.current = window.setTimeout(() => {
+      const el = carouselRef.current
+      if (!el || el.clientWidth === 0) return
+      const idx = Math.round(el.scrollLeft / el.clientWidth)
+      const nuevaTab = TABS[Math.max(0, Math.min(TABS.length - 1, idx))]
+      if (nuevaTab !== tab) {
+        setTab(nuevaTab)
+      }
+    }, 70)
+  }
 
   return (
     <div className="app-container" style={{ backgroundImage: `url(${fotoActual})` }}>
@@ -178,23 +229,38 @@ export default function App() {
           </div>
         )}
 
-        {tab === 'inicio' && <Inicio />}
-        {tab === 'prevision' && <Prevision />}
-        {tab === 'playas' && <Playas />}
+        <div
+          ref={carouselRef}
+          className="tabs-carousel"
+          onScroll={manejarScrollCarrusel}
+        >
+          <div className="tab-slide">
+            <Inicio />
+          </div>
+          <div className="tab-slide">
+            <Prevision />
+          </div>
+          <div className="tab-slide">
+            <Playas />
+          </div>
+        </div>
+
+        <p className="aviso-no-oficial">
+          App meteorológica no oficial de carácter informativo.
+        </p>
       </div>
 
       <nav className="bottom-nav">
-        <button className={tab === 'inicio' ? 'active' : ''} onClick={() => setTab('inicio')}>
+        <button className={tab === 'inicio' ? 'active' : ''} onClick={() => irAPestana('inicio')}>
           Ahora
         </button>
-        <button className={tab === 'prevision' ? 'active' : ''} onClick={() => setTab('prevision')}>
+        <button className={tab === 'prevision' ? 'active' : ''} onClick={() => irAPestana('prevision')}>
           Previsión
         </button>
-        <button className={tab === 'playas' ? 'active' : ''} onClick={() => setTab('playas')}>
+        <button className={tab === 'playas' ? 'active' : ''} onClick={() => irAPestana('playas')}>
           Playas
         </button>
       </nav>
     </div>
   )
 }
-
