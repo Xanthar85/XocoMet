@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { Analytics } from "@vercel/analytics/react";
 import Inicio from './screens/Inicio'
 import Prevision from './screens/Prevision'
 import Playas from './screens/Playas'
@@ -119,6 +120,7 @@ export default function App() {
 
   return (
     <div className="app-container" style={{ backgroundImage: `url(${fotoActual})` }}>
+      <Analytics />
       <div className="content">
         <header style={{ textAlign: 'center', marginBottom: '20px', position: 'relative' }}>
           <h1 style={{ fontSize: '2rem', textShadow: '2px 2px 4px rgba(0,0,0,0.8)' }}>
