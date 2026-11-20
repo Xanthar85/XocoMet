@@ -156,6 +156,35 @@ export default function App() {
           </div>
           
           <button 
+            onClick={() => {
+              if (eventoInstalacion) {
+                eventoInstalacion.prompt()
+              } else {
+                setBannerInstalacion(true)
+              }
+            }} 
+            style={{ 
+              position: 'absolute', 
+              top: '0', 
+              right: '42px', 
+              background: 'rgba(243, 156, 18, 0.2)', 
+              border: '1px solid var(--accent-color)', 
+              borderRadius: '8px',
+              color: 'var(--accent-color)',
+              cursor: 'pointer',
+              padding: '5px 10px',
+              fontSize: '0.8rem',
+              fontWeight: 'bold',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '4px'
+            }}
+            title="Instalar app"
+          >
+            📱 Instalar
+          </button>
+
+          <button 
             onClick={compartirApp} 
             style={{ 
               position: 'absolute', 
@@ -189,45 +218,72 @@ export default function App() {
               textAlign: 'center',
             }}
           >
-            <p style={{ fontSize: '0.9rem', marginBottom: '10px' }}>
-              Instala XocoMet en tu móvil para acceder más rápido
-            </p>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
-              <button
-                onClick={() => {
-                  if (eventoInstalacion) {
-                    eventoInstalacion.prompt()
-                  }
-                  setBannerInstalacion(false)
-                }}
-                style={{
-                  background: 'var(--accent-color)',
-                  color: '#1a1a1a',
-                  border: 'none',
-                  borderRadius: '8px',
-                  padding: '8px 14px',
-                  fontWeight: 'bold',
-                  cursor: 'pointer',
-                  fontSize: '0.85rem',
-                }}
-              >
-                Instalar
-              </button>
-              <button
-                onClick={() => setBannerInstalacion(false)}
-                style={{
-                  background: 'rgba(255, 255, 255, 0.15)',
-                  color: 'var(--text-color)',
-                  border: 'none',
-                  borderRadius: '8px',
-                  padding: '8px 14px',
-                  cursor: 'pointer',
-                  fontSize: '0.85rem',
-                }}
-              >
-                Cerrar
-              </button>
-            </div>
+            {eventoInstalacion ? (
+              <>
+                <p style={{ fontSize: '0.9rem', marginBottom: '10px' }}>
+                  Instala XocoMet en tu móvil para acceder más rápido
+                </p>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
+                  <button
+                    onClick={() => {
+                      eventoInstalacion.prompt()
+                      setBannerInstalacion(false)
+                    }}
+                    style={{
+                      background: 'var(--accent-color)',
+                      color: '#1a1a1a',
+                      border: 'none',
+                      borderRadius: '8px',
+                      padding: '8px 14px',
+                      fontWeight: 'bold',
+                      cursor: 'pointer',
+                      fontSize: '0.85rem',
+                    }}
+                  >
+                    Instalar ahora
+                  </button>
+                  <button
+                    onClick={() => setBannerInstalacion(false)}
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.15)',
+                      color: 'var(--text-color)',
+                      border: 'none',
+                      borderRadius: '8px',
+                      padding: '8px 14px',
+                      cursor: 'pointer',
+                      fontSize: '0.85rem',
+                    }}
+                  >
+                    Cerrar
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <p style={{ fontSize: '0.9rem', marginBottom: '8px', fontWeight: 'bold' }}>
+                  Cómo instalar XocoMet:
+                </p>
+                <p style={{ fontSize: '0.85rem', marginBottom: '10px', lineHeight: '1.4', opacity: '0.9' }}>
+                  • <b>Android (Chrome):</b> Pulsa el menú (⋮) arriba a la derecha y selecciona <em>"Instalar aplicación"</em> o <em>"Añadir a la pantalla de inicio"</em>.<br />
+                  • <b>iPhone / iPad (Safari):</b> Pulsa el botón de <strong>Compartir</strong> (cuadrado con flecha) y selecciona <em>"Añadir a pantalla de inicio"</em>.
+                </p>
+                <button
+                  onClick={() => setBannerInstalacion(false)}
+                  style={{
+                    background: 'var(--accent-color)',
+                    color: '#1a1a1a',
+                    border: 'none',
+                    borderRadius: '8px',
+                    padding: '6px 14px',
+                    fontWeight: 'bold',
+                    cursor: 'pointer',
+                    fontSize: '0.85rem',
+                  }}
+                >
+                  Entendido
+                </button>
+              </>
+            )}
           </div>
         )}
 
