@@ -155,34 +155,7 @@ export default function App() {
             </a>
           </div>
           
-          <button 
-            onClick={() => {
-              if (eventoInstalacion) {
-                eventoInstalacion.prompt()
-              } else {
-                setBannerInstalacion(true)
-              }
-            }} 
-            style={{ 
-              position: 'absolute', 
-              top: '0', 
-              right: '42px', 
-              background: 'rgba(243, 156, 18, 0.2)', 
-              border: '1px solid var(--accent-color)', 
-              borderRadius: '8px',
-              color: 'var(--accent-color)',
-              cursor: 'pointer',
-              padding: '5px 10px',
-              fontSize: '0.8rem',
-              fontWeight: 'bold',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '4px'
-            }}
-            title="Instalar app"
-          >
-            📱 Instalar
-          </button>
+
 
           <button 
             onClick={compartirApp} 
